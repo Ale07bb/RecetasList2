@@ -30,7 +30,6 @@ fun AddRecipeScreen(
         Text("Agregar nueva receta", style = MaterialTheme.typography.titleLarge)
         Spacer(modifier = Modifier.height(16.dp))
 
-        // Nombre del plato
         OutlinedTextField(
             value = name,
             onValueChange = { name = it },
@@ -39,7 +38,6 @@ fun AddRecipeScreen(
         )
         Spacer(modifier = Modifier.height(12.dp))
 
-        // Ingrediente + botón
         Row(Modifier.fillMaxWidth()) {
             OutlinedTextField(
                 value = ingInput,
@@ -71,7 +69,6 @@ fun AddRecipeScreen(
 
         Spacer(modifier = Modifier.height(12.dp))
 
-        // Preparación
         OutlinedTextField(
             value = preparation,
             onValueChange = { preparation = it },
@@ -92,9 +89,8 @@ fun AddRecipeScreen(
                         ingredients = ingredients.toList(),
                         preparation = preparation
                     )
-                    viewModel.addRecipe(recipe) // guarda en ViewModel + Repository
+                    viewModel.addRecipe(recipe)
 
-                    // Volver a la pantalla principal
                     navController.navigate("ingredients") {
                         popUpTo("ingredients") { inclusive = true }
                     }

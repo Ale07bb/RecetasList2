@@ -12,7 +12,7 @@ class RecipeViewModel : ViewModel() {
     val recipes: List<Recipe> get() = _recipes
 
     fun addRecipe(recipe: Recipe) {
-        // Evitar duplicados por nombre (ignora mayúsculas/minúsculas)
+
         if (_recipes.none { it.name.equals(recipe.name, ignoreCase = true) }) {
             _recipes.add(recipe)               // estado reactivo (Compose)
             RecipeRepository.addRecipe(recipe) // repositorio central en memoria

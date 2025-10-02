@@ -18,7 +18,7 @@ fun AppNavigation(viewModel: RecipeViewModel = viewModel()) {
 
     NavHost(navController = navController, startDestination = "ingredients") {
 
-        // Pantalla 1 → Ingredientes
+
         composable("ingredients") {
             IngredientScreen(
                 ingredients = listOf(
@@ -26,14 +26,13 @@ fun AppNavigation(viewModel: RecipeViewModel = viewModel()) {
                     "Pollo", "Queso", "Fideo", "Ajo"
                 ),
                 onSearchClick = { selected ->
-                    // 🔑 Forzamos siempre a consultar el estado más reciente
                     val recipes = viewModel.getRecipesByIngredients(selected)
 
                     if (recipes.isNotEmpty()) {
-                        // ✅ Ahora sí: si hay recetas → vamos directo al listado
+
                         navController.navigate("list/${selected.joinToString(",")}")
                     } else {
-                        // ✅ Solo si realmente no hay → mostramos prompt
+
                         navController.navigate("prompt")
                     }
                 }
@@ -41,7 +40,7 @@ fun AppNavigation(viewModel: RecipeViewModel = viewModel()) {
         }
 
 
-        // Pantalla 2 → Lista
+
         composable("list/{ingredients}") { backStackEntry ->
             val selectedIngredients =
                 backStackEntry.arguments?.getString("ingredients")?.split(",") ?: emptyList()
@@ -54,7 +53,6 @@ fun AppNavigation(viewModel: RecipeViewModel = viewModel()) {
             )
         }
 
-        // Pantalla 3 → Detalle
         composable("detail/{recipeName}") { backStackEntry ->
             val recipeName = backStackEntry.arguments?.getString("recipeName") ?: ""
             val recipe = viewModel.getRecipeById(recipeName)
@@ -63,12 +61,10 @@ fun AppNavigation(viewModel: RecipeViewModel = viewModel()) {
             }
         }
 
-        // Pantalla 4 → Prompt
         composable("prompt") {
             AddRecipePrompt(navController)
         }
 
-        // Pantalla 5 → Formulario
         composable("addRecipe") {
             AddRecipeScreen(navController, viewModel)
         }

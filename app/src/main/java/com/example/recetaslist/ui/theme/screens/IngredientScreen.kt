@@ -17,7 +17,7 @@ fun IngredientScreen(
     ingredients: List<String>,
     onSearchClick: (List<String>) -> Unit
 ) {
-    // Lista de seleccionados
+
     val selectedIngredients = remember { mutableStateListOf<String>() }
 
     Column(
@@ -33,7 +33,6 @@ fun IngredientScreen(
             modifier = Modifier.padding(bottom = 16.dp)
         )
 
-        // Mostramos botones con estilo chip
         FlowRow(
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.Center,
